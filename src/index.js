@@ -24,7 +24,13 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  
+  const { user } = request;
+
+  if (user.todos.length === 10 && user.pro === false) {
+    return response.status(403).json({ error: 'User reach maximum number of todos registered' });
+  }
+
+  return next();
 }
 
 function checksTodoExists(request, response, next) {
