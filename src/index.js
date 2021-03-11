@@ -34,7 +34,7 @@ function checksCreateTodosUserAvailability(request, response, next) {
 }
 
 function checksTodoExists(request, response, next) {
-  const { username } = request.user;
+  const { username } = request.headers;
   const { id } = request.params;
   
   const userExists = users.find(user => user.username === username);
